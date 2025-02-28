@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Card from './components/card.jsx'
 import image from './assets/image.png'
-import logo from './assets/logo.png'
+import logo from './assets/meetX_Logo.png'
 function App() {
   // const [count, setCount] = useState(0)
 

@@ -5,7 +5,7 @@ function Card(){
         <div >
 
         <div className="text-white">
-       <h1 className="text-6xl text-start">Satrt a Call</h1>
+       <h1 className="text-6xl text-start">Start a Call</h1>
        <p className="text-2xl">A new way to connect with your family and friends</p>
         </div>
 
