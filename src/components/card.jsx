@@ -1,18 +1,35 @@
 import React from "react";
-import Btn from './button.jsx'
+import Btn from './button.jsx';
+import image from '../assets/landingPageImg.png'
+import Segment from "./segment.jsx";
+import Navbar from './navbar';
 function Card(){
     return(
-        <div >
+        <div className='bg-white h-screen w-screen'>
+            <div>
+                <Navbar />
+            </div>
 
-        <div className="text-white">
+           <div className='h-full flex justify-around items-center '>
+            <div>
+            <div className="text-black">
        <h1 className="text-6xl text-start">Start a Call</h1>
-       <p className="text-2xl">A new way to connect with your family and friends</p>
+       <p className="text-2xl text-start">Revolutionizing Video Calls with AI: </p>
+       <p className="text-2xl">A New Way to Connect with Family and Friends</p>
         </div>
 
        <div>
-        <Btn />
+        <Btn/>
        </div>
-
+            </div>
+      
+      <div>
+      <img src={image}  />
+      </div>
+      </div>
+        <div >
+            <Segment/>
+        </div>
         </div>
     )
 }
