@@ -6,7 +6,7 @@ import image3 from '../assets/image3.png'
 function Segment() {
   return (
     <div className=" flex flex-wrap justify-around gap-8 mx-8 lg:mx-16 py-8">
-      <div className="bg-white border-[2px] border-black p-6 rounded-2xl shadow-md max-w-xs">
+      <div className="bg-white border-[1px] border-slate-200 p-6 rounded-2xl shadow-md max-w-xs">
         <h1 className="text-2xl font-semibold text-red-500">Individuals</h1>
         <div className="pt-4">
         <img src={image3} className="rounded-xl "/>
@@ -21,7 +21,7 @@ function Segment() {
         </button>
       </div>
 
-      <div className="bg-white border-[2px] border-black p-6 rounded-2xl shadow-md max-w-xs">
+      <div className="bg-white border-[1px] border-slate-200 p-6 rounded-2xl shadow-md max-w-xs">
         <h1 className="text-2xl font-semibold text-green-500">Businesses</h1>
         <div className="pt-4">
         <img src={image2} className="rounded-xl "/>
@@ -36,7 +36,7 @@ function Segment() {
         </button>
       </div>
 
-      <div className="bg-white border-[2px] border-black p-6 rounded-2xl shadow-md max-w-xs">
+      <div className="bg-white border-[1px] border-slate-200 p-6 rounded-2xl shadow-md max-w-xs">
         <h1 className="text-2xl font-semibold text-blue-500">Educators</h1>
         <div className="pt-4">
         <img src={image1} className="rounded-xl "/>

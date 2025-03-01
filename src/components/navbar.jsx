@@ -69,8 +69,8 @@ const Navbar = () => {
               )}
             </div>
           ))}
-          <button className='bg-green-500  text-white px-6 font-semibold rounded-2xl shadow-lg transition-all 
-            duration-300  hover:scale-105 active:scale-95'>sign in</button>
+          <button className='bg-white border-2 border-green-500  text-gray-500 px-6 font-semibold rounded-3xl shadow-lg transition-all 
+            duration-300 hover:bg-green-500 hover:text-white  hover:scale-105 active:scale-95'>sign in</button>
           
         </div>
       </div>

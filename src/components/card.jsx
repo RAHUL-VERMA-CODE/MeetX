@@ -3,6 +3,8 @@ import Btn from './button.jsx';
 import image from '../assets/landingPageImg.png'
 import Segment from "./segment.jsx";
 import Navbar from './navbar';
+import PricingSection from "./theme.jsx";
+import Footer from "./footer.jsx";
 function Card(){
     return(
         <div className='bg-white h-screen w-screen'>
@@ -29,7 +31,10 @@ function Card(){
       </div>
         <div >
             <Segment/>
+            <PricingSection />
+            <Footer/>
         </div>
+
         </div>
     )
 }
