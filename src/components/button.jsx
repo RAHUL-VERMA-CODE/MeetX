@@ -1,13 +1,11 @@
 import { IoVideocamOutline } from "react-icons/io5";
 import { FaRegKeyboard } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
 function Btn(){
-  const navigator = useNavigate()
+
     return (
         <div>
            <div className="flex pt-6">
             <button 
-            onClick={()=>navigator("/signup")}
             className="flex items-center gap-2 px-5 py-2 bg-blue-500 mt-4
             text-white font-semibold rounded-full shadow-lg transition-all 
             duration-300  hover:scale-105 active:scale-95">

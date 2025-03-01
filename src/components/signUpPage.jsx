@@ -1,216 +1,103 @@
-import React, { useState } from 'react';
-
-const SignUpPage = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
-
-  const [errors, setErrors] = useState({});
-  const [showPassword, setShowPassword] = useState(false);
+import { useState } from "react";
+import Navbar from "./navbar.jsx";
+export default function SignupPage() {
+  const [formData, setFormData] = useState({ email: "", phone: "" });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const validateForm = () => {
-    let isValid = true;
-    const newErrors = {};
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
 
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-      isValid = false;
-    }
-
-    if (!formData.email) {
-      newErrors.email = 'Email is required';
-      isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
-      isValid = false;
-    }
-
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-      isValid = false;
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
-      isValid = false;
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
-      isValid = false;
-    }
-
-    setErrors(newErrors);
-    return isValid;
+  const validatePhone = (phone) => {
+    return /^\d{10}$/.test(phone);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      // Handle form submission (e.g., API call)
-      console.log('Form data:', formData);
-      alert('Sign up successful!');
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-      });
+
+    if (!validateEmail(formData.email)) {
+      alert("Please enter a valid email address");
+      return;
     }
+
+    if (!validatePhone(formData.phone)) {
+      alert("Please enter a valid 10-digit phone number");
+      return;
+    }
+
+    console.log("Submitting:", formData);
+    alert("Signup successful!");
+    setFormData({ email: "", phone: "" });
+  };
+
+  const handleGoogleSignIn = () => {
+    window.location.href = "https://accounts.google.com/signup";
   };
 
   return (
-    <div style={styles.container}>
-      <h2 style={styles.title}>Sign Up</h2>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <div style={styles.formGroup}>
-          <label htmlFor="name" style={styles.label}>
-            Name:
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            style={styles.input}
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <Navbar/>
+      <div className="bg-white p-8 rounded-lg shadow-md w-96 mt-8">
+        <h2 className="text-center text-blue-600 text-2xl mb-6">Create Account</h2>
+
+        <button
+          className="w-full py-3 flex items-center bg-gray-100 justify-center border border-gray-300 rounded-md text-gray-700 hover:bg-gray-200"
+          onClick={handleGoogleSignIn}
+        >
+          <img
+            src="https://www.gstatic.com/images/branding/googleg/1x/googleg_standard_color_18dp.png"
+            alt="Google logo"
+            className="w-5 mr-2"
           />
-          {errors.name && <span style={styles.error}>{errors.name}</span>}
-        </div>
-
-        <div style={styles.formGroup}>
-          <label htmlFor="email" style={styles.label}>
-            Email:
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            style={styles.input}
-          />
-          {errors.email && <span style={styles.error}>{errors.email}</span>}
-        </div>
-
-        <div style={styles.formGroup}>
-          <label htmlFor="password" style={styles.label}>
-            Password:
-          </label>
-          <div style={styles.passwordContainer}>
-            <input
-              type={showPassword ? 'text' : 'password'}
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              style={styles.input}
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              style={styles.showPasswordButton}
-            >
-              {showPassword ? 'Hide' : 'Show'}
-            </button>
-          </div>
-          {errors.password && <span style={styles.error}>{errors.password}</span>}
-        </div>
-
-        <div style={styles.formGroup}>
-          <label htmlFor="confirmPassword" style={styles.label}>
-            Confirm Password:
-          </label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            style={styles.input}
-          />
-          {errors.confirmPassword && (
-            <span style={styles.error}>{errors.confirmPassword}</span>
-          )}
-        </div>
-
-        <button type="submit" style={styles.submitButton}>
-          Sign Up
+          Sign up with Google
         </button>
-      </form>
+
+        <div className="text-center my-4 text-gray-500">OR</div>
+
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-gray-600 mb-2">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              className="w-full p-2 border border-gray-300 rounded-md bg-gray-200"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="phone" className="block text-gray-600 mb-2">
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              className="w-full p-2 border border-gray-300 rounded-md bg-gray-200"
+              pattern="[0-9]{10}"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    maxWidth: '400px',
-    margin: '50px auto',
-    padding: '20px',
-    borderRadius: '8px',
-    boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-  },
-  title: {
-    textAlign: 'center',
-    color: '#333',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '15px',
-  },
-  formGroup: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '5px',
-  },
-  label: {
-    fontWeight: '600',
-    color: '#555',
-  },
-  input: {
-    padding: '8px',
-    borderRadius: '4px',
-    border: '1px solid #ddd',
-    fontSize: '16px',
-  },
-  passwordContainer: {
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-  },
-  showPasswordButton: {
-    position: 'absolute',
-    right: '8px',
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
-    color: '#666',
-  },
-  submitButton: {
-    padding: '10px',
-    backgroundColor: '#007bff',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontSize: '16px',
-    marginTop: '10px',
-  },
-  error: {
-    color: 'red',
-    fontSize: '14px',
-  },
-};
-
-export default SignUpPage;
+}

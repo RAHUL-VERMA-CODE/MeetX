@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './navbar.css';
 import logo1 from '../assets/logo2.png'
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
+  const navigator = useNavigate()
   const [activeDropdown, setActiveDropdown] = useState(null);
 
   const menuItems = [
@@ -27,6 +29,7 @@ const Navbar = () => {
   const toggleDropdown = (index) => {
     setActiveDropdown(activeDropdown === index ? null : index);
   };
+
 
   return (
     <nav className="navbar">
@@ -69,7 +72,9 @@ const Navbar = () => {
               )}
             </div>
           ))}
-          <button className='bg-white border-2 border-green-500  text-gray-500 px-6 font-semibold rounded-3xl shadow-lg transition-all 
+          <button 
+            onClick={()=>navigator("/signup")}
+          className='bg-white border-2 border-green-500  text-gray-500 px-6 font-semibold rounded-3xl shadow-lg transition-all 
             duration-300 hover:bg-green-500 hover:text-white  hover:scale-105 active:scale-95'>sign in</button>
           
         </div>
